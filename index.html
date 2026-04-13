@@ -1,144 +1,669 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ビジネスマナークイズ</title>
+<title>ビジネスマナー研修｜新卒のための実践問答 全10問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
+:root{
+  --ink:#1a2332;
+  --ink-soft:#3a4555;
+  --paper:#fafaf7;
+  --paper-warm:#f1efe6;
+  --paper-deep:#e6e3d6;
+  --navy:#1e3a5f;
+  --navy-deep:#0f2240;
+  --accent:#b8341c;
+  --gold:#b8860b;
+  --green:#2d6a3e;
+  --green-bg:#e3eddc;
+  --red-bg:#f5e0db;
+  --line:#d4d0c0;
+  --line-dark:#8a8674;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f0f4f8;color:#333;min-height:100vh}
-.container{max-width:640px;margin:0 auto;padding:20px}
-.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:32px;margin-top:24px;animation:fadeIn .4s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-h1{text-align:center;font-size:1.6em;color:#1a56db;margin-bottom:8px}
-.subtitle{text-align:center;color:#666;font-size:.9em;margin-bottom:24px}
-.progress{background:#e5e7eb;border-radius:99px;height:8px;margin-bottom:24px;overflow:hidden}
-.progress-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#1a56db);border-radius:99px;transition:width .4s ease}
-.q-number{font-size:.85em;color:#1a56db;font-weight:700;margin-bottom:8px}
-.question{font-size:1.1em;font-weight:600;line-height:1.6;margin-bottom:20px}
+html,body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Noto Sans JP','Hiragino Sans',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"palt";
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+.container{
+  position:relative;z-index:1;
+  max-width:680px;margin:0 auto;
+  padding:0 24px 80px;
+}
+.masthead{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 0 12px;
+  border-bottom:1px solid var(--ink);
+}
+.masthead-left{display:flex;align-items:center;gap:12px}
+.logo-mark{
+  width:34px;height:34px;
+  background:var(--navy);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Shippori Mincho',serif;
+  font-weight:800;font-size:18px;
+}
+.brand{
+  font-family:'Shippori Mincho',serif;
+  font-weight:700;font-size:14px;letter-spacing:.18em;
+}
+.brand small{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:.15em;
+  font-weight:400;opacity:.55;margin-top:2px;
+}
+.meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  text-align:right;opacity:.65;line-height:1.5;
+}
+.meta-strong{color:var(--navy);font-weight:600}
+.subhead{
+  border-bottom:3px double var(--ink);
+  padding:6px 0 10px;margin-bottom:36px;
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:'Shippori Mincho',serif;
+  font-size:11px;letter-spacing:.2em;
+}
+.subhead .chapter{font-weight:700}
+.subhead .number{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;opacity:.6;
+}
+.screen{display:none;animation:fadeUp .5s cubic-bezier(.2,.8,.2,1)}
+.screen.active{display:block}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.cover{padding:8px 0 32px;position:relative}
+.cover-tag{
+  display:inline-block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.22em;
+  background:var(--navy);color:var(--paper);
+  padding:5px 12px;margin-bottom:28px;
+}
+.cover-title{
+  font-family:'Shippori Mincho',serif;
+  font-weight:800;
+  font-size:clamp(38px,7.5vw,62px);
+  line-height:1.05;letter-spacing:-.01em;
+  margin-bottom:10px;color:var(--ink);
+}
+.cover-title .accent{
+  color:var(--accent);
+  position:relative;display:inline-block;
+}
+.cover-title .accent::after{
+  content:'';position:absolute;
+  left:0;right:0;bottom:6px;height:8px;
+  background:var(--accent);opacity:.15;z-index:-1;
+}
+.cover-sub{
+  font-family:'Shippori Mincho',serif;
+  font-size:16px;letter-spacing:.1em;font-weight:500;
+  margin-bottom:32px;color:var(--ink-soft);
+  padding-left:16px;border-left:3px solid var(--navy);
+}
+.cover-desc{
+  font-size:14px;line-height:2;
+  max-width:560px;margin-bottom:36px;
+  color:var(--ink-soft);
+}
+.outline{
+  border:1px solid var(--ink);
+  margin-bottom:36px;
+  background:var(--paper);
+}
+.outline-head{
+  background:var(--navy);color:var(--paper);
+  padding:8px 14px;
+  font-family:'Shippori Mincho',serif;
+  font-size:12px;letter-spacing:.18em;font-weight:600;
+}
+.outline-row{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  border-top:1px solid var(--line);
+  font-size:13px;
+}
+.outline-row:first-of-type{border-top:none}
+.outline-row .label{
+  background:var(--paper-warm);
+  padding:11px 14px;
+  font-family:'Shippori Mincho',serif;
+  font-weight:600;
+  border-right:1px solid var(--line);
+  font-size:12px;letter-spacing:.05em;
+}
+.outline-row .value{
+  padding:11px 14px;
+  font-family:'Noto Sans JP',sans-serif;
+}
+.outline-row .value strong{
+  font-family:'Shippori Mincho',serif;
+  color:var(--accent);font-size:15px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--navy);color:var(--paper);
+  border:2px solid var(--navy);
+  padding:15px 32px;
+  font-family:'Shippori Mincho',serif;
+  font-size:15px;font-weight:700;letter-spacing:.12em;
+  cursor:pointer;transition:all .2s;
+  text-decoration:none;
+}
+.btn:hover{
+  background:var(--navy-deep);
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 var(--ink);
+}
+.btn .arrow{
+  font-family:'JetBrains Mono',monospace;
+  font-weight:400;transition:transform .2s;
+}
+.btn:hover .arrow{transform:translateX(4px)}
+.btn.ghost{
+  background:var(--paper);color:var(--ink);
+  border-color:var(--ink);
+}
+.btn.ghost:hover{
+  background:var(--paper-warm);color:var(--ink);
+}
+.progress-wrap{margin-bottom:24px}
+.progress-info{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:8px;
+}
+.progress-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.15em;opacity:.65;
+}
+.progress-percent{
+  font-family:'Shippori Mincho',serif;
+  font-size:14px;font-weight:700;color:var(--navy);
+}
+.progress-bar{display:flex;gap:3px}
+.progress-cell{
+  flex:1;height:5px;
+  background:var(--paper-deep);
+  border:1px solid var(--line-dark);
+}
+.progress-cell.done{background:var(--navy);border-color:var(--navy)}
+.progress-cell.current{background:var(--accent);border-color:var(--accent)}
+.question-card{
+  background:var(--paper);
+  border:1px solid var(--ink);
+  position:relative;
+}
+.question-card::before{
+  content:'';position:absolute;
+  inset:4px;border:1px solid var(--line);
+  pointer-events:none;
+}
+.question-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 22px;
+  border-bottom:1px solid var(--line);
+  background:var(--paper-warm);
+  position:relative;z-index:1;
+}
+.q-num{
+  font-family:'Shippori Mincho',serif;
+  font-size:12px;letter-spacing:.15em;font-weight:700;
+}
+.q-num .big{
+  font-size:22px;color:var(--accent);
+  font-weight:800;margin:0 2px;
+}
+.q-category{
+  font-family:'Shippori Mincho',serif;
+  font-size:11px;letter-spacing:.15em;
+  background:var(--navy);color:var(--paper);
+  padding:4px 11px;font-weight:600;
+}
+.question-body{padding:26px 22px 22px;position:relative;z-index:1}
+.question-text{
+  font-family:'Shippori Mincho',serif;
+  font-size:18px;line-height:1.75;font-weight:600;
+  margin-bottom:24px;
+  padding-left:14px;
+  border-left:3px solid var(--accent);
+  color:var(--ink);
+}
 .choices{display:flex;flex-direction:column;gap:10px}
-.choice-btn{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:14px 16px;font-size:.95em;text-align:left;cursor:pointer;transition:all .2s;line-height:1.5}
-.choice-btn:hover{background:#eff6ff;border-color:#93c5fd}
-.choice-btn.correct{background:#dcfce7;border-color:#22c55e;color:#166534}
-.choice-btn.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
-.choice-btn:disabled{cursor:default;opacity:.85}
-.choice-btn:disabled:hover{background:inherit}
-.explanation{margin-top:16px;padding:16px;background:#f0f9ff;border-left:4px solid #3b82f6;border-radius:0 8px 8px 0;line-height:1.7;font-size:.9em;display:none}
-.explanation.show{display:block;animation:fadeIn .3s ease}
-.next-btn{display:none;margin-top:20px;width:100%;padding:14px;background:linear-gradient(135deg,#3b82f6,#1a56db);color:#fff;border:none;border-radius:12px;font-size:1em;font-weight:600;cursor:pointer;transition:transform .15s}
-.next-btn:hover{transform:scale(1.02)}
-.next-btn.show{display:block}
-.result{text-align:center}
-.score-circle{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1a56db);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:24px auto;color:#fff}
-.score-num{font-size:2.8em;font-weight:800;line-height:1}
-.score-label{font-size:.85em;margin-top:4px}
-.result-msg{font-size:1.1em;font-weight:600;margin:16px 0 8px;color:#1a56db}
-.result-detail{color:#666;font-size:.9em;line-height:1.6;margin-bottom:24px}
-.retry-btn{display:inline-block;padding:14px 48px;background:linear-gradient(135deg,#3b82f6,#1a56db);color:#fff;border:none;border-radius:12px;font-size:1em;font-weight:600;cursor:pointer;transition:transform .15s}
-.retry-btn:hover{transform:scale(1.02)}
-.start-icon{font-size:3em;text-align:center;margin-bottom:16px}
-.start-desc{text-align:center;color:#555;line-height:1.7;font-size:.95em;margin-bottom:24px}
-.feature{display:flex;align-items:center;gap:8px;padding:8px 0;font-size:.9em;color:#555}
-.feature span{font-size:1.2em}
-.start-btn{display:block;width:100%;padding:16px;background:linear-gradient(135deg,#3b82f6,#1a56db);color:#fff;border:none;border-radius:12px;font-size:1.1em;font-weight:700;cursor:pointer;margin-top:20px;transition:transform .15s}
-.start-btn:hover{transform:scale(1.02)}
+.choice-btn{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--paper);
+  border:1.5px solid var(--ink);
+  padding:14px 18px;
+  cursor:pointer;
+  transition:all .15s;
+  text-align:left;
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:14px;line-height:1.6;
+  color:var(--ink);
+  width:100%;
+  position:relative;
+}
+.choice-btn:hover:not(:disabled){
+  background:var(--paper-warm);
+  transform:translate(-2px,-2px);
+  box-shadow:3px 3px 0 var(--ink);
+}
+.choice-btn:disabled{cursor:default}
+.choice-letter{
+  font-family:'Shippori Mincho',serif;
+  font-size:16px;font-weight:800;
+  color:var(--navy);
+  flex-shrink:0;width:20px;
+  border-right:1px solid var(--line-dark);
+  padding-right:10px;
+}
+.choice-text{flex:1;padding-top:1px}
+.choice-mark{
+  margin-left:auto;
+  font-family:'Shippori Mincho',serif;
+  font-size:22px;font-weight:800;line-height:1;
+  flex-shrink:0;
+}
+.choice-btn.correct{
+  background:var(--green-bg);
+  border-color:var(--green);
+}
+.choice-btn.correct .choice-letter{color:var(--green)}
+.choice-btn.correct .choice-mark{color:var(--green)}
+.choice-btn.wrong{
+  background:var(--red-bg);
+  border-color:var(--accent);
+}
+.choice-btn.wrong .choice-letter{color:var(--accent)}
+.choice-btn.wrong .choice-mark{color:var(--accent)}
+.explanation{
+  margin-top:18px;
+  background:var(--navy-deep);
+  color:var(--paper);
+  padding:20px 22px;
+  border:1px solid var(--ink);
+  display:none;
+  position:relative;
+}
+.explanation.show{display:block;animation:fadeUp .35s}
+.explanation::before{
+  content:'';position:absolute;
+  inset:4px;border:1px solid rgba(244,240,230,.2);
+  pointer-events:none;
+}
+.exp-label{
+  display:inline-block;
+  font-family:'Shippori Mincho',serif;
+  font-size:11px;letter-spacing:.2em;font-weight:700;
+  color:var(--gold);
+  border-bottom:1px solid var(--gold);
+  padding-bottom:3px;margin-bottom:12px;
+  position:relative;z-index:1;
+}
+.exp-text{
+  font-family:'Shippori Mincho',serif;
+  font-size:14px;line-height:1.95;font-weight:500;
+  position:relative;z-index:1;
+}
+.next-wrap{
+  margin-top:22px;text-align:right;
+  display:none;
+}
+.next-wrap.show{display:block}
+.result-card{
+  background:var(--paper);
+  border:1px solid var(--ink);
+  position:relative;
+  padding:44px 28px 36px;
+  text-align:center;
+}
+.result-card::before{
+  content:'';position:absolute;
+  inset:5px;border:1px solid var(--line);
+  pointer-events:none;
+}
+.result-stamp{
+  display:inline-block;
+  font-family:'Shippori Mincho',serif;
+  font-size:10px;letter-spacing:.3em;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  padding:5px 14px;
+  margin-bottom:24px;
+  font-weight:700;
+}
+.result-rank{
+  font-family:'Shippori Mincho',serif;
+  font-size:48px;font-weight:800;
+  line-height:1;margin-bottom:18px;
+  color:var(--ink);letter-spacing:.05em;
+}
+.result-rank .em{color:var(--accent)}
+.result-score-box{
+  display:inline-block;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding:14px 36px;
+  margin-bottom:22px;
+}
+.result-score{font-family:'Shippori Mincho',serif}
+.result-score .num{
+  font-size:54px;font-weight:800;
+  color:var(--accent);line-height:1;
+}
+.result-score .total{
+  font-size:18px;opacity:.5;margin-left:4px;
+}
+.result-score-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-top:6px;opacity:.6;
+}
+.result-percent{
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;letter-spacing:.1em;
+  color:var(--navy);font-weight:600;
+  margin-bottom:18px;
+}
+.result-message{
+  font-family:'Shippori Mincho',serif;
+  font-size:14px;line-height:1.95;
+  max-width:440px;margin:0 auto 30px;
+  color:var(--ink-soft);
+}
+.result-actions{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+}
+.colophon{
+  margin-top:54px;
+  padding-top:14px;
+  border-top:1px solid var(--line-dark);
+  display:flex;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:.12em;
+  opacity:.5;text-transform:uppercase;
+}
+@media (max-width:600px){
+  .container{padding:0 16px 60px}
+  .question-text{font-size:16px}
+  .cover-title{font-size:42px}
+  .outline-row{grid-template-columns:90px 1fr}
+  .outline-row .label{padding:10px;font-size:11px}
+  .outline-row .value{padding:10px;font-size:12px}
+  .result-rank{font-size:38px}
+  .result-score .num{font-size:44px}
+}
 </style>
 </head>
 <body>
 <div class="container">
-<div id="app"></div>
+  <header class="masthead">
+    <div class="masthead-left">
+      <div class="logo-mark">礼</div>
+      <div class="brand">
+        新卒ビジネスマナー研修
+        <small>FRESHMAN BUSINESS MANNERS PROGRAM</small>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="meta-strong">VOL. 01</div>
+      <div>2026 EDITION</div>
+    </div>
+  </header>
+  <div class="subhead">
+    <span class="chapter">第一講 ── 実践問答十題</span>
+    <span class="number">CHAPTER I · 10 Q</span>
+  </div>
+
+  <section class="screen active" id="title-screen">
+    <div class="cover">
+      <span class="cover-tag">PRACTICAL Q &amp; A · 10 QUESTIONS</span>
+      <h1 class="cover-title">
+        ビジネスマナー<br>
+        <span class="accent">十問十答</span>
+      </h1>
+      <p class="cover-sub">研修一日目に、まず確かめておきたいこと。</p>
+      <p class="cover-desc">
+        本テキストは、新卒社員が現場に立つ前に身につけておくべきビジネスマナーの基本を、全十問の四択形式で確認するための実践教材です。挨拶・名刺交換・電話応対・メール作法など、明日から必要となる場面を厳選しました。各設問には丁寧な解説を付しています。
+      </p>
+
+      <div class="outline">
+        <div class="outline-head">── 講座概要 ──</div>
+        <div class="outline-row">
+          <div class="label">問題数</div>
+          <div class="value"><strong>10</strong> 問（四択形式）</div>
+        </div>
+        <div class="outline-row">
+          <div class="label">所要時間</div>
+          <div class="value">およそ <strong>5</strong> 分</div>
+        </div>
+        <div class="outline-row">
+          <div class="label">出題範囲</div>
+          <div class="value">挨拶・敬語・名刺・電話・メール・席次・服装ほか</div>
+        </div>
+        <div class="outline-row">
+          <div class="label">対象</div>
+          <div class="value">新入社員・内定者・若手社員</div>
+        </div>
+      </div>
+
+      <button class="btn" onclick="startQuiz()">
+        受講をはじめる <span class="arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="screen" id="quiz-screen">
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span class="progress-label">PROGRESS</span>
+        <span class="progress-percent" id="progress-percent">0%</span>
+      </div>
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-head">
+        <div class="q-num">第 <span class="big" id="q-current">1</span> 問 ／ 全 10 問</div>
+        <div class="q-category" id="q-category">挨拶</div>
+      </div>
+      <div class="question-body">
+        <h2 class="question-text" id="q-text"></h2>
+        <div class="choices" id="q-choices"></div>
+        <div class="explanation" id="q-explanation">
+          <div class="exp-label">── 解説 ──</div>
+          <div class="exp-text" id="q-explanation-text"></div>
+        </div>
+        <div class="next-wrap" id="next-wrap">
+          <button class="btn" id="next-btn" onclick="nextQuestion()">
+            <span id="next-label">次の問題へ</span> <span class="arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="result-screen">
+    <div class="result-card">
+      <div class="result-stamp">── 受講結果 ──</div>
+      <div class="result-rank" id="result-rank">免許皆伝</div>
+      <div class="result-score-box">
+        <div class="result-score">
+          <span class="num" id="result-score">10</span><span class="total">／ 10</span>
+        </div>
+        <div class="result-score-label">CORRECT ANSWERS</div>
+      </div>
+      <div class="result-percent" id="result-percent">正答率 100%</div>
+      <p class="result-message" id="result-message"></p>
+      <div class="result-actions">
+        <button class="btn" onclick="startQuiz()">
+          もう一度受講する <span class="arrow">↻</span>
+        </button>
+        <button class="btn ghost" onclick="shareResult()">
+          結果を共有
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <span>© 2026 FRESHMAN MANNERS</span>
+    <span>BUILT WITH CARE</span>
+  </footer>
 </div>
+
 <script>
 const quizData=[
-{q:"取引先を訪問した際、コートを脱ぐタイミングとして最も適切なものはどれですか？",choices:["受付で名前を告げた後","建物に入る前","応接室に通された後","相手が現れた時"],answer:1,explanation:"コートは建物に入る前に脱ぐのがマナーです。脱いだコートは裏返しにして腕にかけ、ほこりなどが相手のオフィスに落ちないよう配慮しましょう。"},
-{q:"名刺交換で正しい作法はどれですか？",choices:["テーブル越しに交換する","相手より低い位置で差し出す","片手で受け取る","受け取ったらすぐポケットにしまう"],answer:1,explanation:"名刺は相手より低い位置で両手を添えて差し出すのが基本です。テーブル越しの交換は失礼にあたります。受け取った名刺は名刺入れの上に置き、商談中はテーブルに出しておきましょう。"},
-{q:"ビジネスメールで「各位」の正しい使い方はどれですか？",choices:["各位様","各位殿","○○部各位","各位御中"],answer:2,explanation:"「各位」自体が敬称なので、「○○部各位」が正しい使い方です。「各位様」「各位殿」は敬称の重複（二重敬語）にあたるため避けましょう。"},
-{q:"エレベーターで上司やお客様と乗る場合、最も適切な行動はどれですか？",choices:["先に乗って「開」ボタンを押す","お客様に先に乗っていただく","一緒に同時に乗る","階段を使うよう提案する"],answer:0,explanation:"エレベーターでは案内する側が先に乗り込み、「開」ボタンを押してお客様を迎え入れるのが正しいマナーです。降りる際はお客様を先に降ろしましょう。"},
-{q:"電話応対で保留にする場合、何秒以内が目安とされていますか？",choices:["10秒以内","30秒以内","1分以内","3分以内"],answer:1,explanation:"電話の保留は30秒以内が目安です。それ以上かかりそうな場合は、一度電話に出て状況を説明し、折り返しを提案するのがマナーです。"},
-{q:"上座・下座について、応接室で最も上座にあたる席はどこですか？",choices:["入り口に最も近い席","入り口から最も遠い席","窓際の席","テレビが見やすい席"],answer:1,explanation:"日本のビジネスマナーでは、入り口から最も遠い席が上座です。お客様や目上の方を上座にご案内しましょう。一般的に、入り口に最も近い席が下座（案内する側の席）になります。"},
-{q:"お辞儀の種類で「敬礼」の角度として正しいものはどれですか？",choices:["15度","30度","45度","90度"],answer:1,explanation:"敬礼は約30度のお辞儀で、一般的なビジネスシーンで最もよく使われます。15度は会釈（すれ違い時の挨拶など）、45度は最敬礼（深い感謝やお詫びの場面）です。"},
-{q:"ビジネスメールの件名で最も適切なものはどれですか？",choices:["お世話になっております","【ご確認】4/15会議の議事録送付","こんにちは","重要！！絶対読んでください"],answer:1,explanation:"件名は用件がひと目でわかるよう、具体的かつ簡潔に書くのがマナーです。【】で分類を示し、日付や内容を明記すると相手が整理しやすくなります。挨拶文や曖昧な表現は避けましょう。"},
-{q:"電話を受けた際、相手の名前を聞き取れなかった場合の対応として最も適切なものはどれですか？",choices:["聞こえたふりをしてそのまま対応する","「もう一度お名前をお願いできますか？」と聞く","「恐れ入りますが、もう一度お名前をお伺いしてもよろしいでしょうか？」と聞く","無言で待つ"],answer:2,explanation:"「恐れ入りますが」とクッション言葉を添えて丁寧に聞き直すのが正解です。聞き取れないまま対応を続けると、後で大きなトラブルにつながる可能性があります。"},
-{q:"取引先へのお礼メールを送るタイミングとして最も適切なものはどれですか？",choices:["1週間以内","3日以内","翌日まで","当日中"],answer:3,explanation:"お礼メールは当日中に送るのがビジネスマナーの基本です。訪問や打ち合わせの記憶が新しいうちに感謝の気持ちを伝えることで、好印象を与え、良好な関係構築につながります。"}
+  {category:"訪問",q:"取引先を訪問した際、コートを脱ぐタイミングとして最も適切なものはどれですか？",choices:["受付で名前を告げた後","建物に入る前","応接室に通された後","相手が現れた時"],answer:1,explanation:"コートは建物に入る前に脱ぐのがマナーです。脱いだコートは裏返しにして腕にかけ、ほこりなどが相手のオフィスに落ちないよう配慮しましょう。"},
+  {category:"名刺交換",q:"名刺交換で正しい作法はどれですか？",choices:["テーブル越しに交換する","相手より低い位置で差し出す","片手で受け取る","受け取ったらすぐポケットにしまう"],answer:1,explanation:"名刺は相手より低い位置で両手を添えて差し出すのが基本です。テーブル越しの交換は失礼にあたります。受け取った名刺は名刺入れの上に置き、商談中はテーブルに出しておきましょう。"},
+  {category:"メール",q:"ビジネスメールで「各位」の正しい使い方はどれですか？",choices:["各位様","各位殿","○○部各位","各位御中"],answer:2,explanation:"「各位」自体が敬称なので、「○○部各位」が正しい使い方です。「各位様」「各位殿」は敬称の重複（二重敬語）にあたるため避けましょう。"},
+  {category:"案内",q:"エレベーターで上司やお客様と乗る場合、最も適切な行動はどれですか？",choices:["先に乗って「開」ボタンを押す","お客様に先に乗っていただく","一緒に同時に乗る","階段を使うよう提案する"],answer:0,explanation:"エレベーターでは案内する側が先に乗り込み、「開」ボタンを押してお客様を迎え入れるのが正しいマナーです。降りる際はお客様を先に降ろしましょう。"},
+  {category:"電話",q:"電話応対で保留にする場合、何秒以内が目安とされていますか？",choices:["10秒以内","30秒以内","1分以内","3分以内"],answer:1,explanation:"電話の保留は30秒以内が目安です。それ以上かかりそうな場合は、一度電話に出て状況を説明し、折り返しを提案するのがマナーです。"},
+  {category:"席次",q:"上座・下座について、応接室で最も上座にあたる席はどこですか？",choices:["入り口に最も近い席","入り口から最も遠い席","窓際の席","テレビが見やすい席"],answer:1,explanation:"日本のビジネスマナーでは、入り口から最も遠い席が上座です。お客様や目上の方を上座にご案内しましょう。一般的に、入り口に最も近い席が下座（案内する側の席）になります。"},
+  {category:"作法",q:"お辞儀の種類で「敬礼」の角度として正しいものはどれですか？",choices:["15度","30度","45度","90度"],answer:1,explanation:"敬礼は約30度のお辞儀で、一般的なビジネスシーンで最もよく使われます。15度は会釈（すれ違い時の挨拶など）、45度は最敬礼（深い感謝やお詫びの場面）です。"},
+  {category:"メール",q:"ビジネスメールの件名で最も適切なものはどれですか？",choices:["お世話になっております","【ご確認】4/15会議の議事録送付","こんにちは","重要！！絶対読んでください"],answer:1,explanation:"件名は用件がひと目でわかるよう、具体的かつ簡潔に書くのがマナーです。【】で分類を示し、日付や内容を明記すると相手が整理しやすくなります。挨拶文や曖昧な表現は避けましょう。"},
+  {category:"電話",q:"電話を受けた際、相手の名前を聞き取れなかった場合の対応として最も適切なものはどれですか？",choices:["聞こえたふりをしてそのまま対応する","「もう一度お名前をお願いできますか？」と聞く","「恐れ入りますが、もう一度お名前をお伺いしてもよろしいでしょうか？」と聞く","無言で待つ"],answer:2,explanation:"「恐れ入りますが」とクッション言葉を添えて丁寧に聞き直すのが正解です。聞き取れないまま対応を続けると、後で大きなトラブルにつながる可能性があります。"},
+  {category:"気配り",q:"取引先へのお礼メールを送るタイミングとして最も適切なものはどれですか？",choices:["1週間以内","3日以内","翌日まで","当日中"],answer:3,explanation:"お礼メールは当日中に送るのがビジネスマナーの基本です。訪問や打ち合わせの記憶が新しいうちに感謝の気持ちを伝えることで、好印象を与え、良好な関係構築につながります。"}
 ];
 
 let currentQ=0,score=0,answered=false;
-const app=document.getElementById('app');
+const letters=['ア','イ','ウ','エ'];
 
-function renderStart(){
-app.innerHTML=`
-<div class="card">
-<div class="start-icon">📝</div>
-<h1>ビジネスマナークイズ</h1>
-<p class="subtitle">新卒研修の復習にぴったり！</p>
-<div class="start-desc">全10問の4択クイズで、ビジネスマナーの<br>基礎知識をチェックしましょう。</div>
-<div class="feature"><span>✅</span> 全10問・4択形式</div>
-<div class="feature"><span>📖</span> 各問に詳しい解説つき</div>
-<div class="feature"><span>📱</span> スマホ・PC両対応</div>
-<div class="feature"><span>⚡</span> オフラインでも動作</div>
-<button class="start-btn" onclick="startQuiz()">クイズをはじめる</button>
-</div>`;
+function startQuiz(){
+  currentQ=0;score=0;
+  document.getElementById('title-screen').classList.remove('active');
+  document.getElementById('result-screen').classList.remove('active');
+  document.getElementById('quiz-screen').classList.add('active');
+  renderQuestion();
 }
 
-function startQuiz(){currentQ=0;score=0;renderQuestion()}
-
 function renderQuestion(){
-answered=false;
-const d=quizData[currentQ];
-const pct=((currentQ)/quizData.length*100).toFixed(0);
-app.innerHTML=`
-<h1>ビジネスマナークイズ</h1>
-<p class="subtitle">第${currentQ+1}問 / 全${quizData.length}問</p>
-<div class="progress"><div class="progress-bar" style="width:${pct}%"></div></div>
-<div class="card">
-<div class="q-number">Q${currentQ+1}</div>
-<div class="question">${d.q}</div>
-<div class="choices">${d.choices.map((c,i)=>`<button class="choice-btn" onclick="selectAnswer(${i})">${c}</button>`).join('')}</div>
-<div class="explanation" id="explanation">💡 ${d.explanation}</div>
-<button class="next-btn" id="nextBtn" onclick="nextQuestion()">${currentQ<quizData.length-1?'次の問題へ ➜':'結果を見る ➜'}</button>
-</div>`;
+  answered=false;
+  const d=quizData[currentQ];
+  const bar=document.getElementById('progress-bar');
+  bar.innerHTML='';
+  for(let i=0;i<quizData.length;i++){
+    const cell=document.createElement('div');
+    cell.className='progress-cell';
+    if(i<currentQ)cell.classList.add('done');
+    else if(i===currentQ)cell.classList.add('current');
+    bar.appendChild(cell);
+  }
+  document.getElementById('progress-percent').textContent=Math.round((currentQ/quizData.length)*100)+'%';
+  document.getElementById('q-current').textContent=currentQ+1;
+  document.getElementById('q-category').textContent=d.category;
+  document.getElementById('q-text').textContent=d.q;
+
+  const choices=document.getElementById('q-choices');
+  choices.innerHTML='';
+  d.choices.forEach((c,i)=>{
+    const btn=document.createElement('button');
+    btn.className='choice-btn';
+    btn.innerHTML='<span class="choice-letter">'+letters[i]+'</span><span class="choice-text">'+c+'</span>';
+    btn.onclick=()=>selectAnswer(i);
+    choices.appendChild(btn);
+  });
+
+  document.getElementById('q-explanation').classList.remove('show');
+  document.getElementById('next-wrap').classList.remove('show');
+  document.getElementById('next-label').textContent=currentQ<quizData.length-1?'次の問題へ':'結果を見る';
 }
 
 function selectAnswer(idx){
-if(answered)return;
-answered=true;
-const d=quizData[currentQ];
-const btns=document.querySelectorAll('.choice-btn');
-btns.forEach((b,i)=>{
-b.disabled=true;
-if(i===d.answer)b.classList.add('correct');
-if(i===idx&&idx!==d.answer)b.classList.add('wrong');
-});
-if(idx===d.answer)score++;
-document.getElementById('explanation').classList.add('show');
-document.getElementById('nextBtn').classList.add('show');
+  if(answered)return;
+  answered=true;
+  const d=quizData[currentQ];
+  const btns=document.querySelectorAll('.choice-btn');
+  btns.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===d.answer){
+      b.classList.add('correct');
+      const m=document.createElement('span');
+      m.className='choice-mark';m.textContent='○';
+      b.appendChild(m);
+    }else if(i===idx){
+      b.classList.add('wrong');
+      const m=document.createElement('span');
+      m.className='choice-mark';m.textContent='×';
+      b.appendChild(m);
+    }
+  });
+  if(idx===d.answer)score++;
+  document.getElementById('q-explanation-text').textContent=d.explanation;
+  document.getElementById('q-explanation').classList.add('show');
+  document.getElementById('next-wrap').classList.add('show');
 }
 
 function nextQuestion(){
-currentQ++;
-if(currentQ<quizData.length)renderQuestion();
-else renderResult();
+  currentQ++;
+  if(currentQ<quizData.length){
+    renderQuestion();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }else{
+    showResult();
+  }
 }
 
-function renderResult(){
-const pct=Math.round(score/quizData.length*100);
-let msg,detail;
-if(pct===100){msg="パーフェクト！🎉";detail="素晴らしい！完璧なビジネスマナーの知識です。"}
-else if(pct>=80){msg="すばらしい！👏";detail="ほぼ完璧です。実践でも自信を持って行動できますね。"}
-else if(pct>=60){msg="あと少し！💪";detail="基本はおさえています。間違えた問題を復習して完璧を目指しましょう。"}
-else{msg="もう一度挑戦！📚";detail="基礎から見直してみましょう。繰り返し学ぶことで必ず身につきます。"}
-app.innerHTML=`
-<h1>ビジネスマナークイズ</h1>
-<p class="subtitle">結果発表</p>
-<div class="card result">
-<div class="score-circle"><div class="score-num">${score}<span style="font-size:.4em">/${quizData.length}</span></div><div class="score-label">正解数</div></div>
-<div class="result-msg">${msg}</div>
-<div class="result-detail">${detail}<br>正答率：${pct}%</div>
-<button class="retry-btn" onclick="startQuiz()">もう一度挑戦する</button>
-</div>`;
+function showResult(){
+  document.getElementById('quiz-screen').classList.remove('active');
+  document.getElementById('result-screen').classList.add('active');
+  const pct=Math.round(score/quizData.length*100);
+  document.getElementById('result-score').textContent=score;
+  document.getElementById('result-percent').textContent='正答率 '+pct+'%';
+
+  let rank,msg;
+  if(pct===100){
+    rank='<span class="em">免許皆伝</span>';
+    msg='見事、全問正解です。新卒とは思えぬ完璧なビジネスマナーの素養。明日からの現場でも、自信を持って振る舞えるはずです。';
+  }else if(pct>=80){
+    rank='秀 才';
+    msg='ほぼ完璧な理解度です。間違えた問題だけ復習すれば、あなたのマナーは万全。研修の総仕上げとしては申し分ありません。';
+  }else if(pct>=60){
+    rank='精 進';
+    msg='基本はおさえられています。あと一歩で実践レベル。間違えた箇所の解説を読み返し、もう一度挑戦してみましょう。';
+  }else if(pct>=40){
+    rank='見 習';
+    msg='まだ伸びしろがあります。ビジネスマナーは知識よりも反復が肝心。何度か挑戦するうちに、自然と身につくはずです。';
+  }else{
+    rank='初 学';
+    msg='まずは基本から。各問題の解説を丁寧に読みながら、繰り返し挑戦してみてください。マナーは一日にしてならず。';
+  }
+  document.getElementById('result-rank').innerHTML=rank;
+  document.getElementById('result-message').textContent=msg;
 }
 
-renderStart();
+function shareResult(){
+  const pct=Math.round(score/quizData.length*100);
+  const text='新卒ビジネスマナー研修クイズ｜'+score+'/10問正解（正答率'+pct+'%）\n'+location.href;
+  if(navigator.share){
+    navigator.share({title:'ビジネスマナー研修クイズ',text:text,url:location.href}).catch(()=>{});
+  }else{
+    navigator.clipboard.writeText(text).then(()=>{
+      alert('結果をクリップボードにコピーしました');
+    });
+  }
+}
 </script>
 </body>
 </html>
