@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ビジネスマナー研修｜新卒のための実践問答 全10問</title>
+<title>ビジネスマナー研修｜新卒のための実践問答 全6問</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -432,35 +432,35 @@ body::before{
     </div>
   </header>
   <div class="subhead">
-    <span class="chapter">第一講 ── 実践問答十題</span>
-    <span class="number">CHAPTER I · 10 Q</span>
+    <span class="chapter">第一講 ── 実践問答六題</span>
+    <span class="number">CHAPTER I · 6 Q</span>
   </div>
 
   <section class="screen active" id="title-screen">
     <div class="cover">
-      <span class="cover-tag">PRACTICAL Q &amp; A · 10 QUESTIONS</span>
+      <span class="cover-tag">PRACTICAL Q &amp; A · 6 QUESTIONS</span>
       <h1 class="cover-title">
         ビジネスマナー<br>
-        <span class="accent">十問十答</span>
+        <span class="accent">六問六答</span>
       </h1>
       <p class="cover-sub">研修一日目に、まず確かめておきたいこと。</p>
       <p class="cover-desc">
-        本テキストは、新卒社員が現場に立つ前に身につけておくべきビジネスマナーの基本を、全十問の四択形式で確認するための実践教材です。挨拶・名刺交換・電話応対・メール作法など、明日から必要となる場面を厳選しました。各設問には丁寧な解説を付しています。
+        本テキストは、新卒社員が現場に立つ前に身につけておくべきビジネスマナーの基本を、全六問の四択形式で確認するための実践教材です。電話応対・メール作法・名刺交換・席次など、明日から必要となる場面を厳選しました。各設問には丁寧な解説を付しています。
       </p>
 
       <div class="outline">
         <div class="outline-head">── 講座概要 ──</div>
         <div class="outline-row">
           <div class="label">問題数</div>
-          <div class="value"><strong>10</strong> 問（四択形式）</div>
+          <div class="value"><strong>6</strong> 問（四択形式）</div>
         </div>
         <div class="outline-row">
           <div class="label">所要時間</div>
-          <div class="value">およそ <strong>5</strong> 分</div>
+          <div class="value">およそ <strong>3</strong> 分</div>
         </div>
         <div class="outline-row">
           <div class="label">出題範囲</div>
-          <div class="value">挨拶・敬語・名刺・電話・メール・席次・服装ほか</div>
+          <div class="value">電話・敬語・メール・名刺・席次</div>
         </div>
         <div class="outline-row">
           <div class="label">対象</div>
@@ -485,8 +485,8 @@ body::before{
 
     <div class="question-card">
       <div class="question-head">
-        <div class="q-num">第 <span class="big" id="q-current">1</span> 問 ／ 全 10 問</div>
-        <div class="q-category" id="q-category">挨拶</div>
+        <div class="q-num">第 <span class="big" id="q-current">1</span> 問 ／ 全 6 問</div>
+        <div class="q-category" id="q-category">電話</div>
       </div>
       <div class="question-body">
         <h2 class="question-text" id="q-text"></h2>
@@ -510,7 +510,7 @@ body::before{
       <div class="result-rank" id="result-rank">免許皆伝</div>
       <div class="result-score-box">
         <div class="result-score">
-          <span class="num" id="result-score">10</span><span class="total">／ 10</span>
+          <span class="num" id="result-score">6</span><span class="total">／ 6</span>
         </div>
         <div class="result-score-label">CORRECT ANSWERS</div>
       </div>
@@ -535,16 +535,12 @@ body::before{
 
 <script>
 const quizData=[
-  {category:"訪問",q:"取引先を訪問した際、コートを脱ぐタイミングとして最も適切なものはどれですか？",choices:["受付で名前を告げた後","建物に入る前","応接室に通された後","相手が現れた時"],answer:1,explanation:"コートは建物に入る前に脱ぐのがマナーです。脱いだコートは裏返しにして腕にかけ、ほこりなどが相手のオフィスに落ちないよう配慮しましょう。"},
-  {category:"名刺交換",q:"名刺交換で正しい作法はどれですか？",choices:["テーブル越しに交換する","相手より低い位置で差し出す","片手で受け取る","受け取ったらすぐポケットにしまう"],answer:1,explanation:"名刺は相手より低い位置で両手を添えて差し出すのが基本です。テーブル越しの交換は失礼にあたります。受け取った名刺は名刺入れの上に置き、商談中はテーブルに出しておきましょう。"},
-  {category:"メール",q:"ビジネスメールで「各位」の正しい使い方はどれですか？",choices:["各位様","各位殿","○○部各位","各位御中"],answer:2,explanation:"「各位」自体が敬称なので、「○○部各位」が正しい使い方です。「各位様」「各位殿」は敬称の重複（二重敬語）にあたるため避けましょう。"},
-  {category:"案内",q:"エレベーターで上司やお客様と乗る場合、最も適切な行動はどれですか？",choices:["先に乗って「開」ボタンを押す","お客様に先に乗っていただく","一緒に同時に乗る","階段を使うよう提案する"],answer:0,explanation:"エレベーターでは案内する側が先に乗り込み、「開」ボタンを押してお客様を迎え入れるのが正しいマナーです。降りる際はお客様を先に降ろしましょう。"},
-  {category:"電話",q:"電話応対で保留にする場合、何秒以内が目安とされていますか？",choices:["10秒以内","30秒以内","1分以内","3分以内"],answer:1,explanation:"電話の保留は30秒以内が目安です。それ以上かかりそうな場合は、一度電話に出て状況を説明し、折り返しを提案するのがマナーです。"},
-  {category:"席次",q:"上座・下座について、応接室で最も上座にあたる席はどこですか？",choices:["入り口に最も近い席","入り口から最も遠い席","窓際の席","テレビが見やすい席"],answer:1,explanation:"日本のビジネスマナーでは、入り口から最も遠い席が上座です。お客様や目上の方を上座にご案内しましょう。一般的に、入り口に最も近い席が下座（案内する側の席）になります。"},
-  {category:"作法",q:"お辞儀の種類で「敬礼」の角度として正しいものはどれですか？",choices:["15度","30度","45度","90度"],answer:1,explanation:"敬礼は約30度のお辞儀で、一般的なビジネスシーンで最もよく使われます。15度は会釈（すれ違い時の挨拶など）、45度は最敬礼（深い感謝やお詫びの場面）です。"},
-  {category:"メール",q:"ビジネスメールの件名で最も適切なものはどれですか？",choices:["お世話になっております","【ご確認】4/15会議の議事録送付","こんにちは","重要！！絶対読んでください"],answer:1,explanation:"件名は用件がひと目でわかるよう、具体的かつ簡潔に書くのがマナーです。【】で分類を示し、日付や内容を明記すると相手が整理しやすくなります。挨拶文や曖昧な表現は避けましょう。"},
-  {category:"電話",q:"電話を受けた際、相手の名前を聞き取れなかった場合の対応として最も適切なものはどれですか？",choices:["聞こえたふりをしてそのまま対応する","「もう一度お名前をお願いできますか？」と聞く","「恐れ入りますが、もう一度お名前をお伺いしてもよろしいでしょうか？」と聞く","無言で待つ"],answer:2,explanation:"「恐れ入りますが」とクッション言葉を添えて丁寧に聞き直すのが正解です。聞き取れないまま対応を続けると、後で大きなトラブルにつながる可能性があります。"},
-  {category:"気配り",q:"取引先へのお礼メールを送るタイミングとして最も適切なものはどれですか？",choices:["1週間以内","3日以内","翌日まで","当日中"],answer:3,explanation:"お礼メールは当日中に送るのがビジネスマナーの基本です。訪問や打ち合わせの記憶が新しいうちに感謝の気持ちを伝えることで、好印象を与え、良好な関係構築につながります。"}
+  {category:"電話・敬語",q:"取引先から電話が来た。「田中部長はいらっしゃいますか？」と聞かれたが、田中部長は外出中。最も適切な答え方はどれですか？",choices:["田中部長は外出されています","田中はただいま外出しております","田中部長様は不在でいらっしゃいます","田中さんは出かけてます"],answer:1,explanation:"社外の人に対して自社の人間を伝える時は、たとえ上司でも敬称（部長・さん）や尊敬語を付けず、呼び捨て＋謙譲語が正解です。「田中はただいま外出しております」が正しい言い方となります。"},
+  {category:"メール",q:"競合関係にある複数の取引先に同じ案内メールを送りたい。正しい宛先設定はどれですか？",choices:["全員をTOに入れて一斉送信","全員をCCに入れて送信","BCCに全員を入れて送信し、お互いのアドレスが見えないようにする","面倒なので一人ずつ個別に送る"],answer:2,explanation:"互いに面識のない、または競合関係にある相手に一斉送信する時は必ずBCCを使います。CCに入れると全員のアドレスが互いに見えてしまい、情報漏洩や信頼問題に発展します。CCは「情報共有・返信不要」、BCCは「アドレスを隠したい場合」と覚えましょう。"},
+  {category:"クッション言葉",q:"上司に資料の確認をお願いするメール。最も適切な書き出しはどれですか？",choices:["確認してください","確認お願いします","お忙しいところ恐れ入りますが、ご確認いただけますでしょうか","至急確認願います"],answer:2,explanation:"依頼やお願いの前にはクッション言葉を入れることで、相手への配慮と柔らかさが伝わります。代表的なクッション言葉：「恐れ入りますが」「お手数ですが」「お忙しいところ申し訳ございませんが」「差し支えなければ」など。"},
+  {category:"名刺交換",q:"取引先から名刺を受け取る際の正しい作法はどれですか？",choices:["片手で素早く受け取り、すぐ名刺入れにしまう","両手で胸の高さで受け取り、「頂戴いたします」と一言添える","テーブル越しに受け取り、ポケットに入れる","右手で受け取り、左手は名刺入れに添える"],answer:1,explanation:"名刺は両手で胸の高さで受け取り「頂戴いたします」「お預かりいたします」と一言添えるのが基本です。受け取った名刺は商談中はテーブル（または名刺入れ）の上に置き、すぐにしまわないのがマナー。"},
+  {category:"名刺交換",q:"同時に複数の取引先と名刺交換する場合の正しい順序はどれですか？",choices:["席に近い人から順番に","役職の高い人から順番に","話しかけてくれた順に","全員に同時に渡して回す"],answer:1,explanation:"複数人と名刺交換する時は、必ず役職の高い人（先方の責任者）から順に行うのが鉄則です。これは相手への敬意を示す最も基本的な作法であり、順序を間違えると失礼にあたります。"},
+  {category:"席次",q:"応接室で取引先のお客様を案内する時、上座（最も上位の席）はどこですか？",choices:["入り口に最も近い席","入り口から最も遠い席","窓際の席","テレビ・ホワイトボードが見やすい席"],answer:1,explanation:"上座は入り口から最も遠い席です。お客様や目上の方を上座にご案内するのが日本のビジネスマナー。逆に入り口に最も近い席は下座（案内する側＝自社の人間が座る席）。タクシーや会議室、エレベーターでも席次のルールがあるので合わせて覚えましょう。"}
 ];
 
 let currentQ=0,score=0,answered=false;
@@ -655,7 +651,7 @@ function showResult(){
 
 function shareResult(){
   const pct=Math.round(score/quizData.length*100);
-  const text='新卒ビジネスマナー研修クイズ｜'+score+'/10問正解（正答率'+pct+'%）\n'+location.href;
+  const text='新卒ビジネスマナー研修クイズ｜'+score+'/6問正解（正答率'+pct+'%）\n'+location.href;
   if(navigator.share){
     navigator.share({title:'ビジネスマナー研修クイズ',text:text,url:location.href}).catch(()=>{});
   }else{
