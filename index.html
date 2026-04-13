@@ -1,17 +1,144 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Hiragino Sans'; -webkit-text-stroke: #000000; min-height: 18.0px}
-    span.s1 {font-kerning: none}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ビジネスマナークイズ</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f0f4f8;color:#333;min-height:100vh}
+.container{max-width:640px;margin:0 auto;padding:20px}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);padding:32px;margin-top:24px;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+h1{text-align:center;font-size:1.6em;color:#1a56db;margin-bottom:8px}
+.subtitle{text-align:center;color:#666;font-size:.9em;margin-bottom:24px}
+.progress{background:#e5e7eb;border-radius:99px;height:8px;margin-bottom:24px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#1a56db);border-radius:99px;transition:width .4s ease}
+.q-number{font-size:.85em;color:#1a56db;font-weight:700;margin-bottom:8px}
+.question{font-size:1.1em;font-weight:600;line-height:1.6;margin-bottom:20px}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice-btn{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:14px 16px;font-size:.95em;text-align:left;cursor:pointer;transition:all .2s;line-height:1.5}
+.choice-btn:hover{background:#eff6ff;border-color:#93c5fd}
+.choice-btn.correct{background:#dcfce7;border-color:#22c55e;color:#166534}
+.choice-btn.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.choice-btn:disabled{cursor:default;opacity:.85}
+.choice-btn:disabled:hover{background:inherit}
+.explanation{margin-top:16px;padding:16px;background:#f0f9ff;border-left:4px solid #3b82f6;border-radius:0 8px 8px 0;line-height:1.7;font-size:.9em;display:none}
+.explanation.show{display:block;animation:fadeIn .3s ease}
+.next-btn{display:none;margin-top:20px;width:100%;padding:14px;background:linear-gradient(135deg,#3b82f6,#1a56db);color:#fff;border:none;border-radius:12px;font-size:1em;font-weight:600;cursor:pointer;transition:transform .15s}
+.next-btn:hover{transform:scale(1.02)}
+.next-btn.show{display:block}
+.result{text-align:center}
+.score-circle{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#1a56db);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:24px auto;color:#fff}
+.score-num{font-size:2.8em;font-weight:800;line-height:1}
+.score-label{font-size:.85em;margin-top:4px}
+.result-msg{font-size:1.1em;font-weight:600;margin:16px 0 8px;color:#1a56db}
+.result-detail{color:#666;font-size:.9em;line-height:1.6;margin-bottom:24px}
+.retry-btn{display:inline-block;padding:14px 48px;background:linear-gradient(135deg,#3b82f6,#1a56db);color:#fff;border:none;border-radius:12px;font-size:1em;font-weight:600;cursor:pointer;transition:transform .15s}
+.retry-btn:hover{transform:scale(1.02)}
+.start-icon{font-size:3em;text-align:center;margin-bottom:16px}
+.start-desc{text-align:center;color:#555;line-height:1.7;font-size:.95em;margin-bottom:24px}
+.feature{display:flex;align-items:center;gap:8px;padding:8px 0;font-size:.9em;color:#555}
+.feature span{font-size:1.2em}
+.start-btn{display:block;width:100%;padding:16px;background:linear-gradient(135deg,#3b82f6,#1a56db);color:#fff;border:none;border-radius:12px;font-size:1.1em;font-weight:700;cursor:pointer;margin-top:20px;transition:transform .15s}
+.start-btn:hover{transform:scale(1.02)}
+</style>
 </head>
 <body>
-<p class="p1"><span class="s1"></span><br></p>
+<div class="container">
+<div id="app"></div>
+</div>
+<script>
+const quizData=[
+{q:"取引先を訪問した際、コートを脱ぐタイミングとして最も適切なものはどれですか？",choices:["受付で名前を告げた後","建物に入る前","応接室に通された後","相手が現れた時"],answer:1,explanation:"コートは建物に入る前に脱ぐのがマナーです。脱いだコートは裏返しにして腕にかけ、ほこりなどが相手のオフィスに落ちないよう配慮しましょう。"},
+{q:"名刺交換で正しい作法はどれですか？",choices:["テーブル越しに交換する","相手より低い位置で差し出す","片手で受け取る","受け取ったらすぐポケットにしまう"],answer:1,explanation:"名刺は相手より低い位置で両手を添えて差し出すのが基本です。テーブル越しの交換は失礼にあたります。受け取った名刺は名刺入れの上に置き、商談中はテーブルに出しておきましょう。"},
+{q:"ビジネスメールで「各位」の正しい使い方はどれですか？",choices:["各位様","各位殿","○○部各位","各位御中"],answer:2,explanation:"「各位」自体が敬称なので、「○○部各位」が正しい使い方です。「各位様」「各位殿」は敬称の重複（二重敬語）にあたるため避けましょう。"},
+{q:"エレベーターで上司やお客様と乗る場合、最も適切な行動はどれですか？",choices:["先に乗って「開」ボタンを押す","お客様に先に乗っていただく","一緒に同時に乗る","階段を使うよう提案する"],answer:0,explanation:"エレベーターでは案内する側が先に乗り込み、「開」ボタンを押してお客様を迎え入れるのが正しいマナーです。降りる際はお客様を先に降ろしましょう。"},
+{q:"電話応対で保留にする場合、何秒以内が目安とされていますか？",choices:["10秒以内","30秒以内","1分以内","3分以内"],answer:1,explanation:"電話の保留は30秒以内が目安です。それ以上かかりそうな場合は、一度電話に出て状況を説明し、折り返しを提案するのがマナーです。"},
+{q:"上座・下座について、応接室で最も上座にあたる席はどこですか？",choices:["入り口に最も近い席","入り口から最も遠い席","窓際の席","テレビが見やすい席"],answer:1,explanation:"日本のビジネスマナーでは、入り口から最も遠い席が上座です。お客様や目上の方を上座にご案内しましょう。一般的に、入り口に最も近い席が下座（案内する側の席）になります。"},
+{q:"お辞儀の種類で「敬礼」の角度として正しいものはどれですか？",choices:["15度","30度","45度","90度"],answer:1,explanation:"敬礼は約30度のお辞儀で、一般的なビジネスシーンで最もよく使われます。15度は会釈（すれ違い時の挨拶など）、45度は最敬礼（深い感謝やお詫びの場面）です。"},
+{q:"ビジネスメールの件名で最も適切なものはどれですか？",choices:["お世話になっております","【ご確認】4/15会議の議事録送付","こんにちは","重要！！絶対読んでください"],answer:1,explanation:"件名は用件がひと目でわかるよう、具体的かつ簡潔に書くのがマナーです。【】で分類を示し、日付や内容を明記すると相手が整理しやすくなります。挨拶文や曖昧な表現は避けましょう。"},
+{q:"電話を受けた際、相手の名前を聞き取れなかった場合の対応として最も適切なものはどれですか？",choices:["聞こえたふりをしてそのまま対応する","「もう一度お名前をお願いできますか？」と聞く","「恐れ入りますが、もう一度お名前をお伺いしてもよろしいでしょうか？」と聞く","無言で待つ"],answer:2,explanation:"「恐れ入りますが」とクッション言葉を添えて丁寧に聞き直すのが正解です。聞き取れないまま対応を続けると、後で大きなトラブルにつながる可能性があります。"},
+{q:"取引先へのお礼メールを送るタイミングとして最も適切なものはどれですか？",choices:["1週間以内","3日以内","翌日まで","当日中"],answer:3,explanation:"お礼メールは当日中に送るのがビジネスマナーの基本です。訪問や打ち合わせの記憶が新しいうちに感謝の気持ちを伝えることで、好印象を与え、良好な関係構築につながります。"}
+];
+
+let currentQ=0,score=0,answered=false;
+const app=document.getElementById('app');
+
+function renderStart(){
+app.innerHTML=`
+<div class="card">
+<div class="start-icon">📝</div>
+<h1>ビジネスマナークイズ</h1>
+<p class="subtitle">新卒研修の復習にぴったり！</p>
+<div class="start-desc">全10問の4択クイズで、ビジネスマナーの<br>基礎知識をチェックしましょう。</div>
+<div class="feature"><span>✅</span> 全10問・4択形式</div>
+<div class="feature"><span>📖</span> 各問に詳しい解説つき</div>
+<div class="feature"><span>📱</span> スマホ・PC両対応</div>
+<div class="feature"><span>⚡</span> オフラインでも動作</div>
+<button class="start-btn" onclick="startQuiz()">クイズをはじめる</button>
+</div>`;
+}
+
+function startQuiz(){currentQ=0;score=0;renderQuestion()}
+
+function renderQuestion(){
+answered=false;
+const d=quizData[currentQ];
+const pct=((currentQ)/quizData.length*100).toFixed(0);
+app.innerHTML=`
+<h1>ビジネスマナークイズ</h1>
+<p class="subtitle">第${currentQ+1}問 / 全${quizData.length}問</p>
+<div class="progress"><div class="progress-bar" style="width:${pct}%"></div></div>
+<div class="card">
+<div class="q-number">Q${currentQ+1}</div>
+<div class="question">${d.q}</div>
+<div class="choices">${d.choices.map((c,i)=>`<button class="choice-btn" onclick="selectAnswer(${i})">${c}</button>`).join('')}</div>
+<div class="explanation" id="explanation">💡 ${d.explanation}</div>
+<button class="next-btn" id="nextBtn" onclick="nextQuestion()">${currentQ<quizData.length-1?'次の問題へ ➜':'結果を見る ➜'}</button>
+</div>`;
+}
+
+function selectAnswer(idx){
+if(answered)return;
+answered=true;
+const d=quizData[currentQ];
+const btns=document.querySelectorAll('.choice-btn');
+btns.forEach((b,i)=>{
+b.disabled=true;
+if(i===d.answer)b.classList.add('correct');
+if(i===idx&&idx!==d.answer)b.classList.add('wrong');
+});
+if(idx===d.answer)score++;
+document.getElementById('explanation').classList.add('show');
+document.getElementById('nextBtn').classList.add('show');
+}
+
+function nextQuestion(){
+currentQ++;
+if(currentQ<quizData.length)renderQuestion();
+else renderResult();
+}
+
+function renderResult(){
+const pct=Math.round(score/quizData.length*100);
+let msg,detail;
+if(pct===100){msg="パーフェクト！🎉";detail="素晴らしい！完璧なビジネスマナーの知識です。"}
+else if(pct>=80){msg="すばらしい！👏";detail="ほぼ完璧です。実践でも自信を持って行動できますね。"}
+else if(pct>=60){msg="あと少し！💪";detail="基本はおさえています。間違えた問題を復習して完璧を目指しましょう。"}
+else{msg="もう一度挑戦！📚";detail="基礎から見直してみましょう。繰り返し学ぶことで必ず身につきます。"}
+app.innerHTML=`
+<h1>ビジネスマナークイズ</h1>
+<p class="subtitle">結果発表</p>
+<div class="card result">
+<div class="score-circle"><div class="score-num">${score}<span style="font-size:.4em">/${quizData.length}</span></div><div class="score-label">正解数</div></div>
+<div class="result-msg">${msg}</div>
+<div class="result-detail">${detail}<br>正答率：${pct}%</div>
+<button class="retry-btn" onclick="startQuiz()">もう一度挑戦する</button>
+</div>`;
+}
+
+renderStart();
+</script>
 </body>
 </html>
